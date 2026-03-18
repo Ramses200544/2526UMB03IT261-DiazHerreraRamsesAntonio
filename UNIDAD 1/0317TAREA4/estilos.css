@@ -7,3 +7,6 @@ body {
 table {
     border: 10px solid white;
 }
+body {
+    font-family:Arial, Helvetica, sans-serif;
+}
