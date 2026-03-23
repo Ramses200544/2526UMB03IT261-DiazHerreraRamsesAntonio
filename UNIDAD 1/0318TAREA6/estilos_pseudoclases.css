@@ -1,0 +1,32 @@
+button:hover {
+    color:green;
+    background-color: yellow;
+}
+button:active {
+    background-color: purple;
+}
+ul:hover {
+    color:blue;
+}
+a:visited {
+    color:purple;
+}
+a:link {
+    color:brown;
+}
+p:first-child {
+    color:green;
+}
+p:last-child {
+    color:red;
+}
+
+ol:hover {
+    color:blueviolet;
+}
+p:hover {
+    text-align:right;
+}
+table:hover {
+    color:orangered;
+}
