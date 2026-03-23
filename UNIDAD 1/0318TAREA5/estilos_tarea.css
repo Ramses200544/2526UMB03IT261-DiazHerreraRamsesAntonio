@@ -1,4 +1,29 @@
-#xd {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:blueviolet;
+
+/* Selector de elemento de clase */
+.Encabezado {
+    color:green;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+/* Selector de id */
+#Principal {
+    font-size:30px;
+
+}
+/* Selector descendente */
+div p {
+    color:brown;
+}
+/* Selector de pseudoclase */
+a:hover {
+    color:purple;
+}
+/* Selector universal */
+* {
+    text-align:center ;
+}
+/* Selector de grupo */
+ol, p {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+
