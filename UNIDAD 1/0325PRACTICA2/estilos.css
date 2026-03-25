@@ -1,0 +1,19 @@
+/*Selectores*/
+p {
+    color:blueviolet;
+}
+.clase, ul, table {
+    color:green;
+}
+#unico{
+    font-family:Arial, Helvetica, sans-serif;
+}
+div p {
+    color:greenyellow;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size:25px;
+}
+h1, h2, h3 {
+    color: aquamarine;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
