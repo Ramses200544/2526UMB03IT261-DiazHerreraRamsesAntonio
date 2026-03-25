@@ -49,6 +49,20 @@ div table {
     margin:130px;
 }
 
+.divBlock {
+    display:block;
+    background-color: blue;
+    
+}
+.divInline {
+    display:inline;
+    background-color:aquamarine;
+}
+.divBlockinline {
+    display:blockinline;
+    background-color: aqua;
+
+}
 
 
 
