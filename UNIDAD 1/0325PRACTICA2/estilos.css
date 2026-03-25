@@ -37,6 +37,20 @@ input:focus {
     color:green;
     background-color: yellow;
 }
+div img {
+    padding:45px;
+    border:68px;
+    margin:100px;
+}
+div table {
+    container:40px;
+    padding:70px;
+    border:100px;
+    margin:130px;
+}
+
+
+
 
 
 
