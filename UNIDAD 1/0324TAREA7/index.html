@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las 7 maravillas del mundo</title>
+    <!---Formato Bootstrap ya hecho-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <!---Vincular archivo CSS a archivo HTML-->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">7 Maravillas del mundo</a> <!-- Logo -->
+    
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+     <!-- Menú interactivo -->
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto"> <!-- ms-auto = alinea a la derecha -->
+          <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#maravillas">Maravillas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero d-flex align-items-center text-center">
+    <div class="container">
+      <h1 class="display-3 fw-bold">Las 7 Maravillas del Mundo</h1>
+      <p class="lead">Explora los lugares más increíbles del planeta</p>
+      <a href="#maravillas" class="btn btn-custom btn-lg">Explorar</a>
+    </div>
+  </header>
+
+  <section id="maravillas" class="container py-5">
+    <h2 class="text-center mb-5">Maravillas</h2>
+
+  <div class="row g-4"> <!-- g-4 = espacio entre columnas -->
+
+      
+      <div class="col-md-4"> 
+        <div class="card h-100 shadow">
+          <img src="chichen_itza.jfif" class="card-img-top" alt="Chichen Itza">
+          <div class="card-body">
+            <h5 class="card-title">Chichén Itzá</h5>
+            <p class="card-text">Importante ciudad maya en México.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow">
+          <img src="taj_mahal.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Taj Mahal</h5>
+            <p class="card-text">Monumento al amor en India.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow">
+          <img src="cristo_redendor.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Cristo Redendor</h5>
+            <p class="card-text">Monumento al amor en India.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow">
+          <img src="machu_picchu.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Machu Picchu</h5>
+            <p class="card-text">Monumento al amor en India.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow">
+          <img src="coliseo_romano.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Coliseo</h5>
+            <p class="card-text">Monumento al amor en India.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow">
+          <img src="petra.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Petra</h5>
+            <p class="card-text">Monumento al amor en India.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow">
+          <img src="muralla_china.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Muralla China</h5>
+            <p class="card-text">Monumento al amor en India.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" class="container py-5">
+    <h2 class="text-center mb-5">Galería</h2>
+
+    <div class="row g-3">
+      <div class="col-md-4">
+        <img src="img/img1.jpg" class="img-fluid rounded gallery-img">
+      </div>
+      <div class="col-md-4">
+        <img src="img/img2.jpg" class="img-fluid rounded gallery-img">
+      </div>
+      <div class="col-md-4">
+        <img src="img/img3.jpg" class="img-fluid rounded gallery-img">
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <p>Proyecto Web - 7 Maravillas</p>
+  </footer>
+
+  <!-- Bootstrap JS (para menú móvil) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
