@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <nav class="navbar navbar-expand-lg navbar-white bg-white">
     <div class="container">
       <a class="navbar-brand" href="#">7 Maravillas del mundo</a> <!-- Logo -->
     
@@ -19,9 +19,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
     
-     <!-- Menú interactivo -->
+     <!-- Menú interactivo (encabezado) -->
       <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav ms-auto"> <!-- ms-auto = alinea a la derecha -->
+        <ul class="navbar-nav ms-auto"> <!--alinea a la derecha -->
           <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="#maravillas">Maravillas</a></li>
           <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
@@ -41,9 +41,9 @@
   <section id="maravillas" class="container py-5">
     <h2 class="text-center mb-5">Maravillas</h2>
 
-  <div class="row g-4"> <!-- g-4 = espacio entre columnas -->
+  <div class="row g-4"> <!--Espacio entre columnas -->
 
-      
+<!--Mostrar cada maravilla del mundo en plantillas navbar-->
       <div class="col-md-4"> 
         <div class="card h-100 shadow">
           <img src="chichen_itza.jfif" class="card-img-top" alt="Chichen Itza">
@@ -69,7 +69,7 @@
           <img src="cristo_redendor.jpg" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">Cristo Redendor</h5>
-            <p class="card-text">Monumento al amor en India.</p>
+            <p class="card-text">Un abrazo eterno de paz sobre el mundo.</p>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
           <img src="machu_picchu.jpg" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">Machu Picchu</h5>
-            <p class="card-text">Monumento al amor en India.</p>
+            <p class="card-text">Ciudad sagrada del Imperio Inca, oculta entre los Andes.</p>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
           <img src="coliseo_romano.jpg" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">Coliseo</h5>
-            <p class="card-text">Monumento al amor en India.</p>
+            <p class="card-text">El anfiteatro más grande de la antigua Roma, testigo de batallas de gladiadores..</p>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@
           <img src="petra.jpg" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">Petra</h5>
-            <p class="card-text">Monumento al amor en India.</p>
+            <p class="card-text">Un secreto del pasado grabado en la eternidad de la roca..</p>
           </div>
         </div>
       </div>
@@ -109,29 +109,62 @@
           <img src="muralla_china.jpg" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">Muralla China</h5>
-            <p class="card-text">Monumento al amor en India.</p>
+            <p class="card-text">La muralla que serpentea entre montañas, desafiando el paso del tiempo.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
+<!--Carrusel de fotos de las 7 maravillas-->
   <section id="galeria" class="container py-5">
-    <h2 class="text-center mb-5">Galería</h2>
+  <h2 class="text-center mb-5">Galería</h2>
 
-    <div class="row g-3">
-      <div class="col-md-4">
-        <img src="img/img1.jpg" class="img-fluid rounded gallery-img">
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <img src="chichen_itza.jfif" class="d-block w-100 rounded">
       </div>
-      <div class="col-md-4">
-        <img src="img/img2.jpg" class="img-fluid rounded gallery-img">
+
+      <div class="carousel-item">
+        <img src="coliseo_romano.jpg" class="d-block w-100 rounded">
       </div>
-      <div class="col-md-4">
-        <img src="img/img3.jpg" class="img-fluid rounded gallery-img">
+
+      <div class="carousel-item">
+        <img src="cristo_redendor.jpg" class="d-block w-100 rounded">
       </div>
+
+      <div class="carousel-item">
+        <img src="petra.jpg" class="d-block w-100 rounded">
+      </div>
+
+      <div class="carousel-item">
+        <img src="taj_mahal.jpg" class="d-block w-100 rounded">
+      </div>
+
+      <div class="carousel-item">
+        <img src="machu_picchu.jpg" class="d-block w-100 rounded">
+      </div>
+
+      <div class="carousel-item">
+        <img src="muralla_china.jpg" class="d-block w-100 rounded">
+      </div>
+
     </div>
-  </section>
 
+    <!-- Botones -->
+    <button class="carousel-control-prev" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+<!--Pie de página-->
   <footer class="bg-dark text-white text-center py-3">
     <p>Proyecto Web - 7 Maravillas</p>
   </footer>
