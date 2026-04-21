@@ -3,6 +3,10 @@
 <p id="parrafo">Este texto cambia de color</p>
 <button onclick="cambiarColor()">Color</button>
 
+<p id="texto">Texto original</p>
+<button onclick="cambiarTexto()">Cambiar</button>
+
+
 
 <script>
 function saludar() {
@@ -10,6 +14,9 @@ function saludar() {
 }
 function cambiarColor() {
     document.getElementById("parrafo").style.color = "red";
+}
+function cambiarTexto() {
+    document.getElementById("texto").innerHTML = "Texto cambiado 🚀";
 }
 
 </script>
