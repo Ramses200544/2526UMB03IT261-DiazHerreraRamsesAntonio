@@ -6,6 +6,9 @@
 <p id="texto">Texto original</p>
 <button onclick="cambiarTexto()">Cambiar</button>
 
+<input type="text" id="nombre" placeholder="Escribe tu nombre">
+<button onclick="validar()">Validar</button>
+
 
 
 <script>
@@ -17,6 +20,15 @@ function cambiarColor() {
 }
 function cambiarTexto() {
     document.getElementById("texto").innerHTML = "Texto cambiado 🚀";
+}
+function validar() {
+    let valor = document.getElementById("nombre").value;
+
+    if (valor === "") {
+        alert("El campo está vacío");
+    } else {
+        alert("Correcto");
+    }
 }
 
 </script>
