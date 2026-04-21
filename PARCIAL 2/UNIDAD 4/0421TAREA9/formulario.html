@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Usuarios</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="estilos_formulario.css" rel="stylesheet">
+</head>
+<script>
+  const usuarios = [];   // Array donde se guardan los registros
+
+  const form = document.getElementById('formRegistro');
+  const tablaBody = document.getElementById('tablaBody');
+  const tablaContainer = document.getElementById('tabla-container');
+  const contador = document.getElementById('contador');
+
+  // Colores de badge según nivel de estudios
+  const nivelColores = {
+    'Sin estudios': 'secondary',
+    'Primaria': 'secondary',
+    'Secundaria': 'info',
+    'Bachillerato / Preparatoria': 'primary',
+    'Técnico / Tecnólogo': 'warning',
+    'Licenciatura / Ingeniería': 'success',
+    'Maestría': 'danger',
+    'Doctorado': 'dark',
+  };
+
+  // ── Evento submit ──────────────────────────────────────────
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();           // Evita que la página recargue
+    if (!validarForm()) return;   // Para si hay errores
+
+    // Recolectar datos del formulario en un objeto
+    const usuario = {
+      id: usuarios.length + 1,
+      nombre:        document.getElementById('nombre').value.trim(),
+      apellidoP:     document.getElementById('apellidoP').value.trim(),
+      apellidoM:     document.getElementById('apellidoM').value.trim(),
+      edad:          document.getElementById('edad').value,
+      sexo:          document.getElementById('sexo').value,
+      telefono:      document.getElementById('telefono').value.trim(),
+      correo:        document.getElementById('correo').value.trim(),
+      domicilio:     document.getElementById('domicilio').value.trim(),
+      nivelEstudios: document.getElementById('nivelEstudios').value,
+      institucion:   document.getElementById('institucion').value.trim(),
+      carrera:       document.getElementById('carrera').value.trim(),
+      anioEgreso:    document.getElementById('anioEgreso').value,
+      promedio:      document.getElementById('promedio').value,
+    };
+
+    usuarios.push(usuario);   // Guardar en el array
+    agregarFila(usuario);     // Pintar fila en la tabla
+
+    tablaContainer.style.display = 'block';
+    contador.textContent = `Total: ${usuarios.length} usuario${usuarios.length !== 1 ? 's' : ''}`;
+
+    mostrarToast();
+    form.reset();
+    form.classList.remove('was-validated');
+  });
+
+  // ── Limpiar formulario ─────────────────────────────────────
+  document.getElementById('btnLimpiar').addEventListener('click', function () {
+    form.reset();
+    form.classList.remove('was-validated');
+  });
+
+  // ── Validación personalizada ───────────────────────────────
+  function validarForm() {
+    // Teléfono: exactamente 10 dígitos
+    const tel = document.getElementById('telefono');
+    tel.setCustomValidity(/^\d{10}$/.test(tel.value.trim()) ? '' : 'invalid');
+
+    // Edad: entre 1 y 120
+    const edad = document.getElementById('edad');
+    const e = parseInt(edad.value);
+    edad.setCustomValidity((isNaN(e) || e < 1 || e > 120) ? 'invalid' : '');
+
+    form.classList.add('was-validated');   // Activa estilos de error de Bootstrap
+    return form.checkValidity();
+  }
+
+  // ── Agregar fila a la tabla ────────────────────────────────
+  function agregarFila(u) {
+    const nombreCompleto = [u.nombre, u.apellidoP, u.apellidoM].filter(Boolean).join(' ');
+    const color = nivelColores[u.nivelEstudios] || 'secondary';
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="text-muted" style="font-size:0.8rem;">${u.id}</td>
+      <td><strong>${nombreCompleto}</strong><br>
+          <small class="text-muted">${u.sexo || ''}</small></td>
+      <td>${u.edad}</td>
+      <td>${u.telefono}</td>
+      <td style="font-size:0.85rem;">${u.correo}</td>
+      <td><span class="badge text-bg-${color}">${u.nivelEstudios}</span></td>
+      <td style="font-size:0.85rem;">${u.carrera || '—'}</td>
+      <td>
+        <button class="btn btn-sm btn-outline-danger py-0 px-2"
+                onclick="eliminarFila(this, ${u.id})">✕</button>
+      </td>
+    `;
+    tablaBody.appendChild(tr);
+  }
+
+  // ── Eliminar fila ──────────────────────────────────────────
+  function eliminarFila(btn, id) {
+    const idx = usuarios.findIndex(u => u.id === id);
+    if (idx !== -1) usuarios.splice(idx, 1);
+    btn.closest('tr').remove();
+    contador.textContent = `Total: ${usuarios.length} usuario${usuarios.length !== 1 ? 's' : ''}`;
+    if (usuarios.length === 0) tablaContainer.style.display = 'none';
+  }
+
+  // ── Toast de confirmación ──────────────────────────────────
+  function mostrarToast() {
+    const toast = new bootstrap.Toast(document.getElementById('toastOk'), { delay: 2500 });
+    toast.show();
+  }
+</script>
+<body>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="card mb-4">
+        <div class="card-header text-white">
+          <h4 class="mb-0 fw-semibold">Registro de Usuarios</h4>
+          <small class="opacity-75">Completa todos los campos requeridos</small>
+        </div>
+        <div class="card-body p-4">
+          <form id="formRegistro" novalidate>
+
+            <!-- DATOS PERSONALES -->
+            <p class="section-title">Datos personales</p>
+            <div class="row g-3 mb-3">
+              <div class="col-md-4">
+                <label class="form-label">Nombre(s) *</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ej. Juan Carlos" required />
+                <div class="invalid-feedback">Ingresa el nombre.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Apellido paterno *</label>
+                <input type="text" class="form-control" id="apellidoP" placeholder="Ej. García" required />
+                <div class="invalid-feedback">Ingresa el apellido paterno.</div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Apellido materno</label>
+                <input type="text" class="form-control" id="apellidoM" placeholder="Ej. López" />
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-3">
+                <label class="form-label">Edad *</label>
+                <input type="number" class="form-control" id="edad" min="1" max="120" placeholder="Ej. 22" required />
+                <div class="invalid-feedback">Edad entre 1 y 120.</div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Sexo *</label>
+                <select class="form-select" id="sexo" required>
+                  <option value="">Seleccionar</option>
+                  <option>Masculino</option>
+                  <option>Femenino</option>
+                  <option>Prefiero no decir</option>
+                </select>
+                <div class="invalid-feedback">Selecciona una opción.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Teléfono *</label>
+                <input type="tel" class="form-control" id="telefono" maxlength="10" placeholder="10 dígitos" required />
+                <div class="invalid-feedback">Ingresa 10 dígitos.</div>
+              </div>
+            </div>
+
+            <!-- CONTACTO -->
+            <p class="section-title mt-4">Contacto</p>
+            <div class="mb-3">
+              <label class="form-label">Correo electrónico *</label>
+              <input type="email" class="form-control" id="correo" placeholder="usuario@correo.com" required />
+              <div class="invalid-feedback">Ingresa un correo válido.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Domicilio</label>
+              <input type="text" class="form-control" id="domicilio" placeholder="Calle, número, colonia, municipio" />
+            </div>
+
+            <!-- ESTUDIOS -->
+            <p class="section-title mt-4">Estudios académicos</p>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Nivel de estudios *</label>
+                <select class="form-select" id="nivelEstudios" required>
+                  <option value="">Seleccionar</option>
+                  <option>Sin estudios</option>
+                  <option>Primaria</option>
+                  <option>Secundaria</option>
+                  <option>Bachillerato / Preparatoria</option>
+                  <option>Técnico / Tecnólogo</option>
+                  <option>Licenciatura / Ingeniería</option>
+                  <option>Maestría</option>
+                  <option>Doctorado</option>
+                </select>
+                <div class="invalid-feedback">Selecciona el nivel de estudios.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Institución educativa</label>
+                <input type="text" class="form-control" id="institucion" placeholder="Nombre de la escuela / universidad" />
+              </div>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Carrera / Especialidad</label>
+                <input type="text" class="form-control" id="carrera" placeholder="Ej. Ing. en TIC" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Año de egreso</label>
+                <input type="number" class="form-control" id="anioEgreso" min="1950" max="2030" placeholder="Ej. 2025" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Promedio</label>
+                <input type="number" class="form-control" id="promedio" min="0" max="10" step="0.1" placeholder="0.0 – 10.0" />
+              </div>
+            </div>
+
+            <!-- BOTONES -->
+            <div class="d-flex gap-2 justify-content-end">
+              <button type="button" class="btn btn-outline-secondary" id="btnLimpiar">Limpiar</button>
+              <button type="submit" class="btn btn-primary">Registrar usuario</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- TABLA DE REGISTROS -->
+      <div id="tabla-container" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h5 class="fw-semibold mb-0">Usuarios registrados</h5>
+          <span id="contador"></span>
+        </div>
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0 align-middle">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre completo</th>
+                    <th>Edad</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Estudios</th>
+                    <th>Carrera</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="tablaBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Toast de confirmación -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="toastOk" class="toast align-items-center text-bg-success border-0" role="alert" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body fw-semibold">✓ Usuario registrado exitosamente.</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
