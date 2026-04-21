@@ -1,7 +1,18 @@
 <button onclick="saludar()">Haz clic</button>
 
+<p id="parrafo">Este texto cambia de color</p>
+<button onclick="cambiarColor()">Color</button>
+
+
 <script>
 function saludar() {
     alert("Hola Mundo!");
 }
+function cambiarColor() {
+    document.getElementById("parrafo").style.color = "red";
+}
+
 </script>
+
+
+
